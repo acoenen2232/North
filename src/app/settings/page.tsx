@@ -11,7 +11,7 @@ import { leaveByMin } from "@/modules/morning/queries";
 import { ChevronIcon, XIcon } from "@/components/icons";
 import { PushManager } from "./PushManager";
 import { Fold } from "@/components/Fold";
-import { ThemePicker } from "@/components/ThemeToggle";
+import { ThemePicker, ThemeToggle } from "@/components/ThemeToggle";
 
 const DAYS = ["S", "M", "T", "W", "T", "F", "S"];
 
@@ -30,8 +30,13 @@ export default async function SettingsPage() {
         </Link>
       )}
       <header>
-        <p className="eyebrow">{p.setupDone ? "Settings" : "Welcome to North"}</p>
-        <h1 className="h1">{p.setupDone ? "Your bearings" : "Let's set your bearings"}</h1>
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="eyebrow">{p.setupDone ? "Settings" : "Welcome to North"}</p>
+            <h1 className="h1">{p.setupDone ? "Your bearings" : "Let's set your bearings"}</h1>
+          </div>
+          <ThemeToggle />
+        </div>
         {!p.setupDone && (
           <p className="muted mt-1">
             A few facts about your days. They stay on this laptop. For the first two weeks North only measures your mornings;
@@ -70,6 +75,12 @@ export default async function SettingsPage() {
         />
         <button className="btn-gold w-full">{p.setupDone ? "Save" : "Start"}</button>
       </form>
+
+      <section className="card space-y-3">
+        <p className="h2">Appearance</p>
+        <ThemePicker />
+        <p className="text-xs text-ink-faint">Saved on this device. The sun/moon button switches quickly.</p>
+      </section>
 
       {p.setupDone && (
         <>
@@ -138,12 +149,6 @@ export default async function SettingsPage() {
                 </div>
               </form>
             </Fold>
-          </section>
-
-          <section className="card space-y-3">
-            <p className="h2">Appearance</p>
-            <ThemePicker />
-            <p className="text-xs text-ink-faint">Saved on this device. The sun/moon button on Today switches quickly.</p>
           </section>
 
           <section className="card space-y-1 text-sm">
