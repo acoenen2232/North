@@ -13,7 +13,7 @@ export function StarRow({ star, today }: { star: Star; today: string }) {
         <button
           aria-label={done ? "Mark not done" : "Mark done"}
           className={`flex h-8 w-8 items-center justify-center rounded-full border ${
-            done ? "border-gold bg-gold text-night-950" : "border-night-600 text-transparent"
+            done ? "border-gold bg-gold text-on-accent" : "border-night-600 text-transparent"
           }`}
         >
           <CheckIcon className="h-4 w-4" />

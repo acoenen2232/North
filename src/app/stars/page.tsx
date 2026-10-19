@@ -26,7 +26,7 @@ export default async function StarsPage() {
       {pending.map((p) => (
         <div key={p.id} className="card-glow space-y-2">
           <p className="text-sm">
-            You tried <span className="text-gold">{fixFor(p.reason, p.fix)?.label ?? p.fix}</span> on &ldquo;{p.title}&rdquo;. Did it help?
+            You tried <span className="text-accent">{fixFor(p.reason, p.fix)?.label ?? p.fix}</span> on &ldquo;{p.title}&rdquo;. Did it help?
           </p>
           <div className="flex gap-2">
             <form action={rateFix.bind(null, p.id, "helped")} className="flex-1">
@@ -41,7 +41,7 @@ export default async function StarsPage() {
 
       <Fold
         className="card"
-        summaryClassName="text-sm text-gold"
+        summaryClassName="text-sm text-accent"
         summary="+ Add a star"
         defaultOpen={todos.length === 0 && goalList.length === 0}
       >
@@ -50,11 +50,11 @@ export default async function StarsPage() {
           <div className="flex gap-2">
             <label className="flex-1">
               <input type="radio" name="kind" value="todo" defaultChecked className="peer sr-only" />
-              <span className="chip w-full peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-gold-bright">To-do</span>
+              <span className="chip w-full peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-accent-bright">To-do</span>
             </label>
             <label className="flex-1">
               <input type="radio" name="kind" value="goal" className="peer sr-only" />
-              <span className="chip w-full peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-gold-bright">Goal</span>
+              <span className="chip w-full peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-accent-bright">Goal</span>
             </label>
           </div>
           {goalList.length > 0 && (

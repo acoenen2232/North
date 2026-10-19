@@ -36,7 +36,7 @@ export function MorningTracker({ tasks, day, segments, leaveBy, goalArrive, show
   const nowMin = now ? clock(now) : null;
   const toLeave = nowMin !== null ? leaveBy - nowMin : null;
   const countdownTone =
-    toLeave === null ? "text-gold" : toLeave > 15 ? "text-gold" : toLeave > 5 ? "text-warn" : "text-bad";
+    toLeave === null ? "text-accent" : toLeave > 15 ? "text-accent" : toLeave > 5 ? "text-warn" : "text-bad";
 
   return (
     <div className="space-y-4">
@@ -85,7 +85,7 @@ export function MorningTracker({ tasks, day, segments, leaveBy, goalArrive, show
                         {running ? "Running · tap to stop" : total > 0 ? "Tap to resume" : "Tap to start"}
                       </span>
                     </span>
-                    <span className={`font-mono text-lg tabular-nums ${running ? "text-gold" : "text-ink-muted"}`}>
+                    <span className={`font-mono text-lg tabular-nums ${running ? "text-accent" : "text-ink-muted"}`}>
                       {total > 0 || running ? fmtTimer(total) : ""}
                     </span>
                   </button>

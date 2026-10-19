@@ -75,7 +75,7 @@ function Scale({
           return (
             <label key={l} className="block">
               <input type="radio" name={name} value={v} defaultChecked={value === v} className="peer sr-only" />
-              <span className="flex min-h-10 cursor-pointer items-center justify-center rounded-lg border border-night-600 bg-night-800 px-1 text-xs text-ink-muted transition peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-gold-bright">
+              <span className="flex min-h-10 cursor-pointer items-center justify-center rounded-lg border border-night-600 bg-night-800 px-1 text-xs text-ink-muted transition peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-accent-bright">
                 {l}
                 {suffix && values ? suffix : ""}
               </span>

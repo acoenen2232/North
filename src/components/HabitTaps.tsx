@@ -15,7 +15,7 @@ export function HabitTaps({ weeks }: { weeks: HabitWeek[] }) {
           >
             <span
               className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-                doneToday ? "border-good bg-good text-night-950" : "border-night-600"
+                doneToday ? "border-good bg-good text-on-good" : "border-night-600"
               }`}
             >
               {doneToday && <CheckIcon className="h-3.5 w-3.5" />}

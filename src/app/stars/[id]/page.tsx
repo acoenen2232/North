@@ -121,7 +121,7 @@ export default async function StarPage({ params, searchParams }: PageProps<"/sta
                 <span>
                   {reasons[l.reason as Reason]?.label} → {fixFor(l.reason, l.fix)?.label ?? l.fix}
                 </span>
-                <span className={l.outcome === "helped" ? "text-good" : l.outcome === "didnt" ? "text-ink-faint" : "text-gold"}>
+                <span className={l.outcome === "helped" ? "text-good" : l.outcome === "didnt" ? "text-ink-faint" : "text-accent"}>
                   {l.outcome === "helped" ? "helped" : l.outcome === "didnt" ? "didn't" : "trying"}
                 </span>
               </li>

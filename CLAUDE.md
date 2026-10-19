@@ -34,6 +34,6 @@ Voice: direct, tough love, not cruel, always cites data. Daily plan uses `VERA_D
 
 ## Conventions
 
-- Mobile-first, dark only (navy + gold tokens in `globals.css`). Daily logging must stay under 60 seconds: prefer one-tap buttons and radio chips over text entry.
+- Mobile-first. Two themes via `data-theme` on `<html>`: Night (default) and Day (cream + yellow), chosen per device in localStorage (`src/components/theme.ts`, applied before paint by `src/lib/theme-script.ts`). Use the role tokens in `globals.css`, never raw hex: `night-*` are surfaces/borders, `bg-gold` is the yellow fill, `text-accent` is gold *text* (darker in Day so it stays readable), `text-on-accent`/`text-on-good` go on gold/green fills. Daily logging must stay under 60 seconds: prefer one-tap buttons and radio chips over text entry.
 - Prefer server components + form actions; client components only for live clocks, push setup, and pending states.
 - `npm run check` (tsc + eslint) and `npm run build` must pass before committing.

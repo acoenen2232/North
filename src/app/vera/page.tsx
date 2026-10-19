@@ -26,7 +26,7 @@ export default async function VeraPage() {
           <h1 className="h1">Vera</h1>
         </div>
         <Link href="/vera/true-north" className="btn btn-sm">
-          <NorthStar className="h-3.5 w-3.5 text-gold" /> True North
+          <NorthStar className="h-3.5 w-3.5 text-accent" /> True North
         </Link>
       </header>
 
@@ -54,7 +54,7 @@ export default async function VeraPage() {
                     const s = star(id);
                     return s ? (
                       <li key={id}>
-                        <Link href={`/stars/${id}`} className="text-gold-bright">
+                        <Link href={`/stars/${id}`} className="text-accent-bright">
                           ★ {s.title}
                         </Link>
                       </li>
@@ -119,7 +119,7 @@ export default async function VeraPage() {
                 <div key={b.week_start}>
                   <p className="label">Week of {formatDay(b.week_start, { month: "short", day: "numeric" })}</p>
                   <p className="text-sm">{b.content.headline}</p>
-                  <p className="text-xs text-gold">Change: {b.content.one_change.what}</p>
+                  <p className="text-xs text-accent">Change: {b.content.one_change.what}</p>
                 </div>
               ))}
             </div>
@@ -146,7 +146,7 @@ function BearingsCard({ content }: { content: NonNullable<ReturnType<typeof bear
       <List title="Patterns" items={content.patterns} tone="text-ink" />
       <List title="Drift" items={content.drift} tone="text-warn" />
       <div className="card-glow space-y-1">
-        <p className="eyebrow text-gold">One change for next week</p>
+        <p className="eyebrow text-accent">One change for next week</p>
         <p className="font-medium">{content.one_change.what}</p>
         <p className="text-sm text-ink-muted">{content.one_change.why}</p>
         <p className="text-sm">

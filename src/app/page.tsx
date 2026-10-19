@@ -15,6 +15,7 @@ import { AddEventForm } from "@/components/AddEventForm";
 import { CheckinCard } from "@/components/CheckinCard";
 import { HabitTaps } from "@/components/HabitTaps";
 import { StarRow } from "@/components/StarRow";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { CalendarIcon, ChevronIcon, GearIcon, NorthStar } from "@/components/icons";
 
 export default async function TodayPage() {
@@ -52,6 +53,7 @@ export default async function TodayPage() {
           </h1>
         </div>
         <div className="flex gap-1">
+          <ThemeToggle />
           <Link href="/calendar" className="btn-ghost px-2" aria-label="Calendar">
             <CalendarIcon className="h-5 w-5" />
           </Link>
@@ -63,11 +65,11 @@ export default async function TodayPage() {
 
       {plan ? (
         <Link href="/vera" className="card flex gap-3">
-          <NorthStar className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+          <NorthStar className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
           <p className="text-sm leading-relaxed">{plan.content.note}</p>
         </Link>
       ) : veraConnected() ? (
-        <Link href="/vera" className="card flex items-center justify-between text-sm text-gold">
+        <Link href="/vera" className="card flex items-center justify-between text-sm text-accent">
           <span className="flex items-center gap-2">
             <NorthStar className="h-4 w-4" /> Ask Vera to chart today
           </span>
@@ -83,7 +85,7 @@ export default async function TodayPage() {
               {improving ? `Leave by ${formatTime(leaveByMin())}` : day?.woke_at ? "Tracking. Tap your tasks." : "Tap “I’m up” to start"}
             </span>
           </span>
-          <ChevronIcon className="h-5 w-5 text-gold" />
+          <ChevronIcon className="h-5 w-5 text-accent" />
         </Link>
       )}
 
@@ -95,7 +97,7 @@ export default async function TodayPage() {
               {prepDone} of {prepTotal} done. Future you is counting on it.
             </span>
           </span>
-          <ChevronIcon className="h-5 w-5 text-gold" />
+          <ChevronIcon className="h-5 w-5 text-accent" />
         </Link>
       )}
 
