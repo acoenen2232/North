@@ -11,6 +11,7 @@ import { leaveByMin } from "@/modules/morning/queries";
 import { ChevronIcon, XIcon } from "@/components/icons";
 import { PushManager } from "./PushManager";
 import { Fold } from "@/components/Fold";
+import { ThemePicker } from "@/components/ThemeToggle";
 
 const DAYS = ["S", "M", "T", "W", "T", "F", "S"];
 
@@ -53,7 +54,7 @@ export default async function SettingsPage() {
             {DAYS.map((d, i) => (
               <label key={i}>
                 <input type="checkbox" name="workDays" value={i} defaultChecked={p.workDays.includes(String(i))} className="peer sr-only" />
-                <span className="chip w-full cursor-pointer px-0 peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-gold-bright">
+                <span className="chip w-full cursor-pointer px-0 peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-accent-bright">
                   {d}
                 </span>
               </label>
@@ -117,7 +118,7 @@ export default async function SettingsPage() {
                 </li>
               ))}
             </ul>
-            <Fold summaryClassName="text-sm text-gold" summary="+ Add a reminder">
+            <Fold summaryClassName="text-sm text-accent" summary="+ Add a reminder">
               <form action={addReminder} className="mt-3 space-y-2">
                 <input name="title" required placeholder="Reminder" className="input" />
                 <input name="body" placeholder="Details (optional)" className="input" />
@@ -125,7 +126,7 @@ export default async function SettingsPage() {
                   {DAYS.map((d, i) => (
                     <label key={i}>
                       <input type="checkbox" name="days" value={i} defaultChecked className="peer sr-only" />
-                      <span className="chip w-full cursor-pointer px-0 peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-gold-bright">
+                      <span className="chip w-full cursor-pointer px-0 peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-accent-bright">
                         {d}
                       </span>
                     </label>
@@ -137,6 +138,12 @@ export default async function SettingsPage() {
                 </div>
               </form>
             </Fold>
+          </section>
+
+          <section className="card space-y-3">
+            <p className="h2">Appearance</p>
+            <ThemePicker />
+            <p className="text-xs text-ink-faint">Saved on this device. The sun/moon button on Today switches quickly.</p>
           </section>
 
           <section className="card space-y-1 text-sm">

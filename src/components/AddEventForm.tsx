@@ -7,7 +7,7 @@ export function AddEventForm({ date }: { date: string }) {
   return (
     <Fold
       className="card"
-      summaryClassName="flex items-center gap-2 text-sm text-gold"
+      summaryClassName="flex items-center gap-2 text-sm text-accent"
       summary={
         <>
           <PlusIcon className="h-4 w-4" /> Add a block

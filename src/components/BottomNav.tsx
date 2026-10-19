@@ -38,7 +38,7 @@ function Nav({ path }: { path: string | null }) {
               <Link
                 href={href}
                 className={`flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium transition ${
-                  on ? "text-gold" : "text-ink-faint"
+                  on ? "text-accent" : "text-ink-faint"
                 }`}
               >
                 <Icon className="h-6 w-6" />

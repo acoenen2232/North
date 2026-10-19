@@ -48,12 +48,12 @@ export default async function MorningPage() {
       <div className="card flex items-center justify-between gap-3">
         {improving ? (
           <p className="text-sm">
-            <span className="text-gold">Goal: arrive {formatTime(goalArrive)}.</span>{" "}
+            <span className="text-accent">Goal: arrive {formatTime(goalArrive)}.</span>{" "}
             <span className="text-ink-muted">Leave by {formatTime(leaveBy)}.</span>
           </p>
         ) : (
           <p className="text-sm text-ink-muted">
-            <span className="text-gold">Measuring · day {Math.min(phase.day, phase.measureDays)} of {phase.measureDays}.</span>{" "}
+            <span className="text-accent">Measuring · day {Math.min(phase.day, phase.measureDays)} of {phase.measureDays}.</span>{" "}
             No changes yet. Just tap.
           </p>
         )}
@@ -130,7 +130,7 @@ export default async function MorningPage() {
             {stats.prepEffect.fullDays > 0 && stats.prepEffect.otherDays > 0 && (
               <p className="border-t border-night-700 pt-3 text-sm text-ink-muted">
                 After full prep you arrive around{" "}
-                <span className="text-gold">{formatTime(stats.prepEffect.fullPrep!)}</span>; otherwise{" "}
+                <span className="text-accent">{formatTime(stats.prepEffect.fullPrep!)}</span>; otherwise{" "}
                 <span className="text-ink">{formatTime(stats.prepEffect.noPrep!)}</span>.
               </p>
             )}
@@ -218,7 +218,7 @@ function PrepList({
                 <button className="flex w-full items-center gap-3 rounded-xl px-1 py-2 text-left">
                   <span
                     className={`flex h-6 w-6 items-center justify-center rounded-full border ${
-                      on ? "border-gold bg-gold text-night-950" : "border-night-600"
+                      on ? "border-gold bg-gold text-on-accent" : "border-night-600"
                     }`}
                   >
                     {on && <CheckIcon className="h-4 w-4" />}

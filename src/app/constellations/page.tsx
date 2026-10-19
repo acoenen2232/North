@@ -31,7 +31,7 @@ export default async function ConstellationsPage() {
                 <button
                   aria-label={doneToday ? "Undo today" : "Done today"}
                   className={`flex h-11 w-11 items-center justify-center rounded-full border transition active:scale-95 ${
-                    doneToday ? "border-good bg-good text-night-950" : "border-night-600 text-ink-faint"
+                    doneToday ? "border-good bg-good text-on-good" : "border-night-600 text-ink-faint"
                   }`}
                 >
                   <CheckIcon className="h-5 w-5" />
@@ -45,7 +45,7 @@ export default async function ConstellationsPage() {
                     key={d.date}
                     title={d.date}
                     className={`flex h-6 w-6 items-center justify-center rounded-full text-[10px] ${
-                      d.done ? "bg-good/80 text-night-950" : d.date === today ? "border border-gold/60 text-gold" : "bg-night-800 text-ink-faint"
+                      d.done ? "bg-good/80 text-on-good" : d.date === today ? "border border-gold/60 text-accent" : "bg-night-800 text-ink-faint"
                     }`}
                   >
                     {formatDay(d.date, { weekday: "narrow" })}
@@ -112,17 +112,17 @@ export default async function ConstellationsPage() {
         </section>
       )}
 
-      <Fold className="card" summaryClassName="text-sm text-gold" summary="+ Add a habit">
+      <Fold className="card" summaryClassName="text-sm text-accent" summary="+ Add a habit">
         <form action={addHabit} className="mt-3 space-y-3">
           <input name="name" required placeholder="Habit name" className="input" />
           <div className="flex gap-2">
             <label className="flex-1">
               <input type="radio" name="kind" value="good" defaultChecked className="peer sr-only" />
-              <span className="chip w-full peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-gold-bright">Build it</span>
+              <span className="chip w-full peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-accent-bright">Build it</span>
             </label>
             <label className="flex-1">
               <input type="radio" name="kind" value="bad" className="peer sr-only" />
-              <span className="chip w-full peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-gold-bright">Break it</span>
+              <span className="chip w-full peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-accent-bright">Break it</span>
             </label>
           </div>
           <label className="block">
@@ -161,7 +161,7 @@ function ChipGroup({ name, label, options }: { name: string; label: string; opti
         {options.map((o) => (
           <label key={o}>
             <input type="radio" name={name} value={o} className="peer sr-only" />
-            <span className="chip cursor-pointer peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-gold-bright">{o}</span>
+            <span className="chip cursor-pointer peer-checked:border-gold peer-checked:bg-gold/15 peer-checked:text-accent-bright">{o}</span>
           </label>
         ))}
         <input name={`${name}_other`} placeholder="Other" className="input min-h-9 w-24 flex-1 text-sm" />

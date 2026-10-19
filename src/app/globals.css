@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-/* North: deep navy night sky, warm gold starlight. Dark by default. */
+/* North: deep navy night sky, warm gold starlight. Dark ("Night") by default; "Day" is the light theme.
+   The night-* names are roles, not literal colors: 950 = deepest background, 850 = cards,
+   800 = raised controls, 700/600 = borders. Day remaps them to warm creams and yellows.
+   Gold is the fill color; accent is gold used as text (darker in Day so it stays readable). */
 @theme {
   --color-night-950: #050a1c;
   --color-night-900: #0a1230;
@@ -17,7 +20,12 @@
   --color-gold-bright: #ffdc94;
   --color-gold-dim: #a8823f;
 
+  --color-accent: #f2c46d;
+  --color-accent-bright: #ffdc94;
+  --color-on-accent: #050a1c;
+
   --color-good: #7fd1b9;
+  --color-on-good: #050a1c;
   --color-warn: #f0a46e;
   --color-bad: #ef8a8a;
 
@@ -27,6 +35,35 @@
 
 :root {
   color-scheme: dark;
+}
+
+/* Day: butter-cream paper, sunny yellow, navy ink. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-night-950: #fffdf5;
+  --color-night-900: #fdf3d4;
+  --color-night-850: #fffaea;
+  --color-night-800: #fcebb8;
+  --color-night-700: #efd793;
+  --color-night-600: #dcbc68;
+
+  --color-ink: #18224a;
+  --color-ink-muted: #4a5480;
+  --color-ink-faint: #7d84a2;
+
+  --color-gold: #ffc61a;
+  --color-gold-bright: #ffde6e;
+  --color-gold-dim: #c99512;
+
+  --color-accent: #8a5a00;
+  --color-accent-bright: #6e4700;
+  --color-on-accent: #18224a;
+
+  --color-good: #1f9474;
+  --color-on-good: #ffffff;
+  --color-warn: #b45d17;
+  --color-bad: #c03838;
 }
 
 html,
@@ -59,12 +96,35 @@ body {
     linear-gradient(180deg, var(--color-night-900), var(--color-night-950));
 }
 
+/* Day: selected chips and radio choices are solid yellow (a pale tint disappears on cream). */
+:root[data-theme="light"] .chip[data-on="true"],
+:root[data-theme="light"] .peer:checked ~ span {
+  background: var(--color-gold);
+  border-color: var(--color-gold-dim);
+  color: var(--color-on-accent);
+  font-weight: 600;
+}
+
+/* Day sky: a soft sun rising over warm paper. */
+:root[data-theme="light"] .starfield {
+  background:
+    radial-gradient(60% 38% at 85% -6%, rgb(255 205 40 / 0.55), transparent 70%),
+    radial-gradient(90% 50% at 10% -12%, rgb(255 226 140 / 0.5), transparent 70%),
+    linear-gradient(180deg, #fde9a8 0%, var(--color-night-900) 35%, #fff8e6 100%);
+}
+
 @layer components {
   .card {
     @apply rounded-2xl border border-night-700/70 bg-night-850/80 p-4 backdrop-blur-sm;
   }
   .card-glow {
     @apply rounded-2xl border border-gold/40 bg-night-850/90 p-4 shadow-[0_0_24px_-8px_rgb(242_196_109/0.45)];
+  }
+  :root[data-theme="light"] .card-glow {
+    @apply border-gold bg-[#fff1bf] shadow-[0_6px_24px_-10px_rgb(230_170_0/0.55)];
+  }
+  :root[data-theme="light"] .card {
+    @apply shadow-[0_1px_2px_rgb(120_90_0/0.06)];
   }
   .eyebrow {
     @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-faint;
@@ -83,7 +143,7 @@ body {
     @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-night-600 bg-night-800 px-4 text-sm font-medium text-ink transition active:scale-[0.98] disabled:opacity-40;
   }
   .btn-gold {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-gold px-4 text-sm font-semibold text-night-950 transition active:scale-[0.98] disabled:opacity-40;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-gold px-4 text-sm font-semibold text-on-accent transition active:scale-[0.98] disabled:opacity-40;
   }
   .btn-ghost {
     @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-3 text-sm font-medium text-ink-muted transition active:scale-[0.98];
@@ -96,7 +156,7 @@ body {
     @apply inline-flex min-h-9 items-center justify-center rounded-full border border-night-600 bg-night-800 px-3 text-sm text-ink-muted transition;
   }
   .chip[data-on="true"] {
-    @apply border-gold bg-gold/15 text-gold-bright;
+    @apply border-gold bg-gold/15 text-accent-bright;
   }
 
   .input {

@@ -44,7 +44,7 @@ export default async function CalendarPage({ searchParams }: PageProps<"/calenda
               key={d}
               href={`/day/${d}`}
               className={`flex aspect-square flex-col items-center justify-center gap-1 rounded-xl text-sm ${
-                d === today ? "bg-gold/15 font-semibold text-gold ring-1 ring-gold/60" : inMonth ? "bg-night-850/70" : "text-ink-faint/50"
+                d === today ? "bg-gold/15 font-semibold text-accent ring-1 ring-gold/60" : inMonth ? "bg-night-850/70" : "text-ink-faint/50"
               }`}
             >
               {Number(d.slice(8))}

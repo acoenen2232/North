@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Suspense } from "react";
 import { BottomNav } from "@/components/BottomNav";
 import { ServiceWorker } from "@/components/ServiceWorker";
+import { ThemeSync } from "@/components/theme";
+import { themeInitScript } from "@/lib/theme-script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -36,7 +38,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    // data-theme is set before paint by the inline script, so the server value may differ.
+    <html
+      lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-dvh">
         <div className="starfield" aria-hidden />
         <main className="mx-auto max-w-md px-4 pb-32 pt-[max(env(safe-area-inset-top),1rem)]">
@@ -46,6 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <BottomNav />
         </Suspense>
         <ServiceWorker />
+        <ThemeSync />
       </body>
     </html>
   );

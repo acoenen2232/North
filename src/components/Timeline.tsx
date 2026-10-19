@@ -40,12 +40,12 @@ export function Timeline({ events, date, isToday }: { events: EventRow[]; date: 
             <div className="min-w-0 flex-1">
               <p className={`text-sm font-medium ${e.done ? "text-ink-faint line-through" : ""}`}>
                 {e.title}
-                {e.source === "vera" && <NorthStar className="ml-1.5 inline h-3 w-3 text-gold" />}
+                {e.source === "vera" && <NorthStar className="ml-1.5 inline h-3 w-3 text-accent" />}
               </p>
               <p className="text-xs text-ink-faint">
                 {cat.label}
                 {e.repeat !== "none" && ` · ${e.repeat === "weekdays" ? "weekdays" : e.repeat}`}
-                {current && <span className="text-gold"> · now</span>}
+                {current && <span className="text-accent"> · now</span>}
               </p>
               {e.notes && <p className="mt-1 text-xs text-ink-muted">{e.notes}</p>}
             </div>
@@ -54,7 +54,7 @@ export function Timeline({ events, date, isToday }: { events: EventRow[]; date: 
                 <button
                   aria-label={e.done ? "Mark not done" : "Mark done"}
                   className={`flex h-8 w-8 items-center justify-center rounded-full border ${
-                    e.done ? "border-gold bg-gold text-night-950" : "border-night-600 text-transparent"
+                    e.done ? "border-gold bg-gold text-on-accent" : "border-night-600 text-transparent"
                   }`}
                 >
                   <CheckIcon className="h-4 w-4" />
