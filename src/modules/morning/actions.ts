@@ -33,6 +33,19 @@ export async function startTask(taskId: number) {
   refresh();
 }
 
+/** Throw away today's time on a task and start it again from zero. */
+export async function restartTask(taskId: number) {
+  const date = isoDate();
+  const now = nowStamp();
+  tx(() => {
+    ensureDay(date);
+    closeOpenSegment(date, now);
+    run("DELETE FROM morning_segments WHERE date = ? AND task_id = ?", date, taskId);
+    run("INSERT INTO morning_segments (date, task_id, started_at) VALUES (?, ?, ?)", date, taskId, now);
+  });
+  refresh();
+}
+
 export async function stopTask() {
   closeOpenSegment(isoDate());
   refresh();

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { arrived, leaveNow, startTask, stopTask, wakeUp } from "@/modules/morning/actions";
+import { arrived, leaveNow, restartTask, startTask, stopTask, wakeUp } from "@/modules/morning/actions";
 import type { MorningDay, MorningTask, Segment } from "@/modules/morning/queries";
 import { clock, fmtClock, fmtTimer, useNow } from "@/components/useNow";
 
@@ -68,27 +68,45 @@ export function MorningTracker({ tasks, day, segments, leaveBy, goalArrive, show
             {tasks.map((t) => {
               const running = open?.task_id === t.id;
               const total = taskTotal(t.id);
+              const paused = !running && total > 0;
               return (
-                <li key={t.id}>
+                <li
+                  key={t.id}
+                  className={`rounded-2xl border transition ${
+                    running
+                      ? "border-gold bg-gold/10 shadow-[0_0_20px_-6px_rgb(242_196_109/0.6)]"
+                      : "border-night-700 bg-night-850/80"
+                  }`}
+                >
                   <button
                     disabled={pending}
                     onClick={() => act(() => (running ? stopTask() : startTask(t.id)))}
-                    className={`flex w-full items-center justify-between rounded-2xl border px-4 py-4 text-left transition active:scale-[0.99] ${
-                      running
-                        ? "border-gold bg-gold/10 shadow-[0_0_20px_-6px_rgb(242_196_109/0.6)]"
-                        : "border-night-700 bg-night-850/80"
-                    }`}
+                    className="flex w-full items-center justify-between px-4 py-4 text-left active:scale-[0.99]"
                   >
                     <span>
                       <span className="block text-base font-medium">{t.name}</span>
                       <span className="text-xs text-ink-faint">
-                        {running ? "Running · tap to stop" : total > 0 ? "Tap to resume" : "Tap to start"}
+                        {running ? "Running" : paused ? "Paused" : "Tap to start"}
                       </span>
                     </span>
                     <span className={`font-mono text-lg tabular-nums ${running ? "text-accent" : "text-ink-muted"}`}>
                       {total > 0 || running ? fmtTimer(total) : ""}
                     </span>
                   </button>
+                  {(running || paused) && (
+                    <div className="grid grid-cols-2 gap-2 px-4 pb-4">
+                      <button
+                        className={running ? "btn btn-sm" : "btn-gold btn-sm"}
+                        disabled={pending}
+                        onClick={() => act(() => (running ? stopTask() : startTask(t.id)))}
+                      >
+                        {running ? "Pause" : "Resume"}
+                      </button>
+                      <button className="btn-ghost btn-sm" disabled={pending} onClick={() => act(() => restartTask(t.id))}>
+                        Restart
+                      </button>
+                    </div>
+                  )}
                 </li>
               );
             })}
