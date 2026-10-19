@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* North: deep navy night sky, warm gold starlight. Dark by default. */
+@theme {
+  --color-night-950: #050a1c;
+  --color-night-900: #0a1230;
+  --color-night-850: #0f1a3d;
+  --color-night-800: #152249;
+  --color-night-700: #22325f;
+  --color-night-600: #33467a;
+
+  --color-ink: #e9edf8;
+  --color-ink-muted: #a3aed0;
+  --color-ink-faint: #6e7aa0;
+
+  --color-gold: #f2c46d;
+  --color-gold-bright: #ffdc94;
+  --color-gold-dim: #a8823f;
+
+  --color-good: #7fd1b9;
+  --color-warn: #f0a46e;
+  --color-bad: #ef8a8a;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-night-900);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+/* A quiet starfield behind everything. */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgb(255 255 255 / 0.55), transparent 60%),
+    radial-gradient(1px 1px at 78% 9%, rgb(255 255 255 / 0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 64% 32%, rgb(255 220 148 / 0.6), transparent 60%),
+    radial-gradient(1px 1px at 30% 52%, rgb(255 255 255 / 0.3), transparent 60%),
+    radial-gradient(1px 1px at 88% 61%, rgb(255 255 255 / 0.35), transparent 60%),
+    radial-gradient(1px 1px at 8% 78%, rgb(255 255 255 / 0.3), transparent 60%),
+    radial-gradient(1.5px 1.5px at 46% 88%, rgb(255 220 148 / 0.45), transparent 60%),
+    radial-gradient(120% 70% at 50% -10%, #17295c 0%, transparent 60%),
+    linear-gradient(180deg, var(--color-night-900), var(--color-night-950));
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-night-700/70 bg-night-850/80 p-4 backdrop-blur-sm;
+  }
+  .card-glow {
+    @apply rounded-2xl border border-gold/40 bg-night-850/90 p-4 shadow-[0_0_24px_-8px_rgb(242_196_109/0.45)];
+  }
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-faint;
+  }
+  .h1 {
+    @apply text-2xl font-semibold tracking-tight text-ink;
+  }
+  .h2 {
+    @apply text-base font-semibold text-ink;
+  }
+  .muted {
+    @apply text-sm text-ink-muted;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-night-600 bg-night-800 px-4 text-sm font-medium text-ink transition active:scale-[0.98] disabled:opacity-40;
+  }
+  .btn-gold {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-gold px-4 text-sm font-semibold text-night-950 transition active:scale-[0.98] disabled:opacity-40;
+  }
+  .btn-ghost {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-3 text-sm font-medium text-ink-muted transition active:scale-[0.98];
+  }
+  .btn-sm {
+    @apply min-h-9 rounded-lg px-3 text-xs;
+  }
+
+  .chip {
+    @apply inline-flex min-h-9 items-center justify-center rounded-full border border-night-600 bg-night-800 px-3 text-sm text-ink-muted transition;
+  }
+  .chip[data-on="true"] {
+    @apply border-gold bg-gold/15 text-gold-bright;
+  }
+
+  .input {
+    @apply min-h-11 w-full rounded-xl border border-night-600 bg-night-950/60 px-3 text-base text-ink placeholder:text-ink-faint focus:border-gold focus:outline-none;
+  }
+  .label {
+    @apply mb-1 block text-xs font-medium text-ink-muted;
+  }
+}
